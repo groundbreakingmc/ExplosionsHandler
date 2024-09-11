@@ -1,0 +1,17 @@
+name: ExplosionsHandler
+version: '${project.version}'
+main: graundbreaking.explosionsblocker.ExplosionsBlocker
+author: graundbreaking
+description: Handle all types of explosions
+
+commands:
+  exblocker: {}
+
+permissions:
+  explosionsblocker.reload:
+    default: op
+    description: Allows you to reload the plugin
+
+  explosionsblocker.updates:
+    default: op
+    description: Allows you see updates notifications

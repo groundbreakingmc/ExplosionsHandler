@@ -1,0 +1,116 @@
+#
+# Command to reload the plugin - /exblocker
+# Permission to access reload - exblocker.reload
+#
+# Main prevents settings
+#
+# Set 'blocked-worlds: []' to disable in all worlds
+settings:
+  # Do not change it!
+  config-version: 1.0
+  # Author doesn't recommend disabling it!
+  check-updates: true
+
+  # Creepers explosion settings
+  creeper:
+    # Disable creepers block damage when explode
+    prevent-explosion-blocks-damage: true
+    # Disable creepers entities damage when explode
+    prevent-explosion-entities-damage: true
+    # Add an effect when explode
+    # Working in all worlds
+    add-explosion-large-effect: true
+    # Add a sound effect when explode
+    # Working in all worlds
+    play-generic-explode-sound: true
+    # World where plugin has to block explosions
+    blocked-worlds:
+      - test_world
+      - test_world2
+
+  # Tnt explosion settings
+  tnt:
+    # Disable tnt block damage when explode
+    prevent-explosion-blocks-damage: true
+    # Disable tnt entities damage when explode
+    prevent-explosion-entities-damage: true
+    # Add an effect when explode
+    # Working in all worlds
+    add-explosion-large-effect: true
+    # Add a sound effect when explode
+    # Working in all worlds
+    play-generic-explode-sound: true
+    # World where plugin has to block explosions
+    blocked-worlds:
+      - test_world
+      - test_world2
+
+  # Tnt in minecart explosion settings
+  tnt-in-minecart:
+    # Disable tnt in minecart block damage when explode
+    prevent-explosion-blocks-damage: true
+    # Disable tnt in minecart entities damage when explode
+    prevent-explosion-entities-damage: true
+    # Add an effect when explode
+    # Working in all worlds
+    add-explosion-large-effect: true
+    # Add a sound effect when explode
+    # Working in all worlds
+    play-generic-explode-sound: true
+    # World where plugin has to block explosions
+    blocked-worlds:
+      - test_world
+      - test_world2
+
+  # Wither setting
+  wither:
+    # Disable wither entities damage
+    prevent-entities-damage: true
+    # Disable wither block damage
+    prevent-blocks-breaking: true
+    # World where plugin has to block explosions
+    blocked-worlds:
+      - test_world
+      - test_world2
+
+  # Wither charging settings (After wither spawns he is charging few seconds)
+  wither-charging:
+    # Disable creepers block damage when explode
+    prevent-explosion-blocks-damage: true
+    # Add an effect where wither explodes
+    # Working in all worlds
+    add-explosion-large-effect: true
+    # Add a sound effect when wither explodes
+    # Working in all worlds
+    play-generic-explode-sound: true
+    # World where plugin has to block explosions
+    blocked-worlds:
+      - test_world
+      - test_world2
+
+  # Settings for wither shooting heads
+  wither-heads:
+    # Disable heads block damage when explode
+    prevent-explosion-blocks-damage: true
+    # Disable tnt in minecart entities damage when explode
+    # Нужно ли отключать урон мобам/игрокам в которых прилетела голова визера?
+    prevent-entities-damage: true
+    # Add an effect where head was bumped
+    # Working in all worlds
+    add-explosion-large-effect: true
+    # Add a sound effect where head was bumped
+    # Working in all worlds
+    play-generic-explode-sound: true
+    # World where plugin has to block explosions
+    blocked-worlds:
+      - test_world
+      - test_world2
+
+# Messages
+# (Messages also supporting multi format)
+# reload:
+#   - 'first line'
+#   - 'second line'
+messages:
+  reload: '&2(!) &aPlugin ExplosionsBlocker was successfully reloaded in %time%ms.'
+  no-perm: '&4(!) &cSorry, but you don''t have enough permissions to attempt this command.'

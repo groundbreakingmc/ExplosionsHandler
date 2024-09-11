@@ -1,0 +1,102 @@
+#
+# Основная команда для перезагрузки плагина - /exblocker
+# Право на использование команды - exblocker.reload
+#
+# Основные настройки запретов
+#
+# Установи 'blocked-worlds: []', чтобы отключить
+settings:
+  config-version: 1.0
+
+  # Настройки для криперов
+  creeper:
+    # Нужно ли отключать взрыв блоков
+    prevent-explosion-blocks-damage: true
+    # Нужно ли отключать урон мобам/игрокам которых взорвали
+    prevent-explosion-entities-damage: true
+    # Добавить эффект взрыва на место крипера?
+    add-explosion-large-effect: true
+    # Проиграть ли звук взрыва?
+    play-generic-explode-sound: true
+    # Миры в которых будет отключаться
+    blocked-worlds:
+      - test_world
+      - test_world2
+
+  # Настройки динамита
+  tnt:
+    # Нужно ли отключать взрыв блоков
+    prevent-explosion-blocks-damage: true
+    # Нужно ли отключать урон мобам/игрокам которые были в радиус взрыва?
+    prevent-explosion-entities-damage: true
+    # Добавить эффект взрыва на место тнт?
+    add-explosion-large-effect: true
+    # Проиграть ли звук взрыва?
+    play-generic-explode-sound: true
+    # Миры в которых будет отключаться
+    blocked-worlds:
+      - test_world
+      - test_world2
+
+  # Настройки динамита в вагонетке
+  tnt-in-minecart:
+    # Нужно ли отключать взрыв блоков
+    prevent-explosion-blocks-damage: true
+    # Нужно ли отключать урон мобам/игрокам которых взорвали
+    prevent-explosion-entities-damage: true
+    # Добавить эффект взрыва на место вагонетки с динамитом?
+    add-explosion-large-effect: true
+    # Проиграть ли звук взрыва?
+    play-generic-explode-sound: true
+    # Миры в которых будет отключаться
+    blocked-worlds:
+      - test_world
+      - test_world2
+
+  # Настройки визера
+  wither:
+    # Нужно ли отключать урон мобам/игрокам которых визер атакует?
+    prevent-entities-damage: true
+    # Отключить ли ломание блоков для визера?
+    prevent-blocks-breaking: true
+    # Миры в которых будет отключаться
+    blocked-worlds:
+      - test_world
+      - test_world2
+
+  # Настройки визера при активации (После спавна визера он еще несколько секунд неактивен)
+  wither-charging:
+    # Нужно ли отключать взрыв блоков
+    prevent-explosion-blocks-damage: true
+    # Добавить эффект взрыва на место визера?
+    add-explosion-large-effect: true
+    # Проиграть ли звук взрыва?
+    play-generic-explode-sound: true
+    # Миры в которых будет отключаться
+    blocked-worlds:
+      - test_world
+      - test_world2
+
+  # Настройки голов которыми стреляется визер
+  wither-heads:
+    # Нужно ли отключать взрыв блоков
+    prevent-explosion-blocks-damage: true
+    # Нужно ли отключать урон мобам/игрокам в которых прилетела голова визера?
+    prevent-entities-damage: true
+    # Добавить эффект взрыва на место попадания головы?
+    add-explosion-large-effect: true
+    # Проиграть ли звук взрыва?
+    play-generic-explode-sound: true
+    # Миры в которых будет отключаться
+    blocked-worlds:
+      - test_world
+      - test_world2
+
+# Сообщения
+# (Сообщения так-же поддерживают многострочный формат)
+# reload:
+#   - 'первая строка'
+#   - 'вторая строка'
+messages:
+  reload: '&2(!) &aПлагин ExplosionsBlocker успешно перезагружен за %time%мс.'
+  no-perm: '&4(!) &cИзвини, но у тебя не хватает прав на использование данной команды.'
