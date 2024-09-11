@@ -1,8 +1,9 @@
-package graundbreaking.explosionsblocker.utils.config;
+package graundbreaking.explosionshandler.utils.config;
 
 import lombok.Getter;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -126,7 +127,7 @@ public final class ConfigValues {
         }
     }
 
-    private static List<String> getMessages(final ConfigurationSection section, final String path) {
+    private static List<String> getMessages(final @NotNull ConfigurationSection section, final String path) {
         if (section.get(path) instanceof String) {
             return List.of(section.getString(path, "&4(!) &cFailed to get message on path: " + section + "." + path));
         } else if (!section.getStringList(path).isEmpty()) {

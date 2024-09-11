@@ -1,6 +1,6 @@
 name: ExplosionsHandler
 version: '${project.version}'
-main: graundbreaking.explosionsblocker.ExplosionsBlocker
+main: graundbreaking.explosionshandler.ExplosionsBlocker
 author: graundbreaking
 description: Handle all types of explosions
 

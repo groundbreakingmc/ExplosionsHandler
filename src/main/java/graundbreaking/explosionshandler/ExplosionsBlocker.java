@@ -1,12 +1,12 @@
-package graundbreaking.explosionsblocker;
+package graundbreaking.explosionshandler;
 
-import graundbreaking.explosionsblocker.listeners.EntitiesDamage;
-import graundbreaking.explosionsblocker.listeners.Explosions;
-import graundbreaking.explosionsblocker.listeners.UpdateNotifier;
-import graundbreaking.explosionsblocker.utils.config.Config;
-import graundbreaking.explosionsblocker.utils.config.ConfigValues;
-import graundbreaking.explosionsblocker.utils.MessageSender;
-import graundbreaking.explosionsblocker.utils.UpdateChecker;
+import graundbreaking.explosionshandler.listeners.EntitiesDamage;
+import graundbreaking.explosionshandler.listeners.Explosions;
+import graundbreaking.explosionshandler.listeners.UpdateNotifier;
+import graundbreaking.explosionshandler.utils.config.ConfigHandler;
+import graundbreaking.explosionshandler.utils.config.ConfigValues;
+import graundbreaking.explosionshandler.utils.MessageSender;
+import graundbreaking.explosionshandler.utils.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -23,9 +23,9 @@ public final class ExplosionsBlocker extends JavaPlugin {
         final long startTime = System.currentTimeMillis();
 
         final Logger logger = getLogger();
-        final Config config = new Config(this, logger);
-        ExplosionsBlocker.config = config.loadAndSetup();
-        config.checkVersion();
+        final ConfigHandler configHandler = new ConfigHandler(this, logger);
+        ExplosionsBlocker.config = configHandler.loadAndSetup();
+        configHandler.checkVersion();
         new ConfigValues(ExplosionsBlocker.config, logger).setValues();
 
         final MessageSender messageSender = new MessageSender(extractMainVersion() >= 16);
@@ -79,7 +79,7 @@ public final class ExplosionsBlocker extends JavaPlugin {
     @Override
     public void reloadConfig() {
         Logger logger = getLogger();
-        new Config(this, logger).loadAndSetup();
+        new ConfigHandler(this, logger).loadAndSetup();
         new ConfigValues(config, logger).setValues();
     }
 }

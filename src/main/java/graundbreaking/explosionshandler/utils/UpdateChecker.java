@@ -1,6 +1,6 @@
-package graundbreaking.explosionsblocker.utils;
+package graundbreaking.explosionshandler.utils;
 
-import graundbreaking.explosionsblocker.ExplosionsBlocker;
+import graundbreaking.explosionshandler.ExplosionsBlocker;
 import lombok.Getter;
 
 import java.net.URI;

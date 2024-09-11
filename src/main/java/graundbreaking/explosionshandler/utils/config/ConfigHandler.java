@@ -1,7 +1,7 @@
-package graundbreaking.explosionsblocker.utils.config;
+package graundbreaking.explosionshandler.utils.config;
 
 import com.google.common.base.Charsets;
-import graundbreaking.explosionsblocker.ExplosionsBlocker;
+import graundbreaking.explosionshandler.ExplosionsBlocker;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.util.Objects;
 import java.util.logging.Logger;
 
-public final class Config {
+public final class ConfigHandler {
 
     private static FileConfiguration config = null;
     private static File file = null;
@@ -19,7 +19,7 @@ public final class Config {
     private final ExplosionsBlocker plugin;
     private final Logger logger;
     
-    public Config(final ExplosionsBlocker plugin, final Logger logger) {
+    public ConfigHandler(final ExplosionsBlocker plugin, final Logger logger) {
         this.plugin = plugin;
         this.logger = logger;
     }
@@ -36,11 +36,11 @@ public final class Config {
             e.printStackTrace();
         }
 
-        Config.config = YamlConfiguration.loadConfiguration(file);
+        ConfigHandler.config = YamlConfiguration.loadConfiguration(file);
 
         final InputStream defConfigStream = plugin.getResource("config.yml");
         if (defConfigStream != null) {
-            Config.config.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(defConfigStream, Charsets.UTF_8)));
+            ConfigHandler.config.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(defConfigStream, Charsets.UTF_8)));
         }
         
         return config;

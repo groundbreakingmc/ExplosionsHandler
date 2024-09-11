@@ -1,7 +1,7 @@
-package graundbreaking.explosionsblocker.listeners;
+package graundbreaking.explosionshandler.listeners;
 
-import graundbreaking.explosionsblocker.utils.MessageSender;
-import graundbreaking.explosionsblocker.utils.UpdateChecker;
+import graundbreaking.explosionshandler.utils.MessageSender;
+import graundbreaking.explosionshandler.utils.UpdateChecker;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

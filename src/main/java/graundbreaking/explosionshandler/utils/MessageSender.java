@@ -1,11 +1,10 @@
-package graundbreaking.explosionsblocker.utils;
+package graundbreaking.explosionshandler.utils;
 
-import it.unimi.dsi.fastutil.chars.CharOpenHashSet;
-import it.unimi.dsi.fastutil.chars.CharSet;
 import org.bukkit.command.CommandSender;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static org.bukkit.ChatColor.translateAlternateColorCodes;
 
 public final class MessageSender {
 
@@ -16,14 +15,6 @@ public final class MessageSender {
     public MessageSender(final boolean isAbove16) {
         this.IS_ABOVE_16 = isAbove16;
     }
-
-    private static final CharSet CODES = new CharOpenHashSet(new char[]{
-            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-            'a', 'b', 'c', 'd', 'e', 'f',
-            'A', 'B', 'C', 'D', 'E', 'F',
-            'k', 'l', 'm', 'n', 'o', 'r', 'x',
-            'K', 'L', 'M', 'N', 'O', 'R', 'X'
-    });
 
     public String colorize(String message) {
         if (IS_ABOVE_16) {
@@ -45,19 +36,6 @@ public final class MessageSender {
         }
 
         return translateAlternateColorCodes('&', message);
-    }
-
-    public String translateAlternateColorCodes(char altColorChar, String textToTranslate) {
-        char[] b = textToTranslate.toCharArray();
-
-        for (int i = 0, length = b.length - 1; i < length; ++i) {
-            if (b[i] == altColorChar && CODES.contains(b[i + 1])) {
-                b[i++] = '§';
-                b[i] = Character.toLowerCase(b[i]);
-            }
-        }
-
-        return new String(b);
     }
 
     public void sendMessage(CommandSender sender, String message) {

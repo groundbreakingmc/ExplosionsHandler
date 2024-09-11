@@ -1,6 +1,6 @@
-package graundbreaking.explosionsblocker.listeners;
+package graundbreaking.explosionshandler.listeners;
 
-import graundbreaking.explosionsblocker.utils.config.ConfigValues;
+import graundbreaking.explosionshandler.utils.config.ConfigValues;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
