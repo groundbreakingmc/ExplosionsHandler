@@ -1,18 +1,17 @@
 package graundbreaking.explosionshandler.utils;
 
-import org.bukkit.command.CommandSender;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.bukkit.ChatColor.translateAlternateColorCodes;
 
-public final class MessageSender {
+public final class MessageColorizer {
 
     private static final Pattern HEX_PATTERN = Pattern.compile("&#([a-fA-F\\d]{6})");
     private static final char COLOR_CHAR = '§';
     private final boolean IS_ABOVE_16;
 
-    public MessageSender(final boolean isAbove16) {
+    public MessageColorizer(final boolean isAbove16) {
         this.IS_ABOVE_16 = isAbove16;
     }
 
@@ -36,13 +35,5 @@ public final class MessageSender {
         }
 
         return translateAlternateColorCodes('&', message);
-    }
-
-    public void sendMessage(CommandSender sender, String message) {
-        if (message.isEmpty() || message.isBlank()) {
-            return;
-        }
-
-        sender.sendMessage(colorize(message));
     }
 }

@@ -1,5 +1,6 @@
 package graundbreaking.explosionshandler.utils.config;
 
+import graundbreaking.explosionshandler.utils.MessageColorizer;
 import lombok.Getter;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -69,7 +70,7 @@ public final class ConfigValues {
         this.logger = logger;
     }
 
-    public void setValues() {
+    public void setValues(final MessageColorizer messageColorizer) {
 
         final ConfigurationSection settings = config.getConfigurationSection("settings");
         final ConfigurationSection messages = config.getConfigurationSection("messages");
@@ -119,21 +120,30 @@ public final class ConfigValues {
 
         if (messages != null) {
             noPermMessages.clear();
-            noPermMessages.addAll(getMessages(messages, "no-perm"));
+            noPermMessages.addAll(getMessages(messages, "no-perm", messageColorizer));
             reloadMessages.clear();
-            reloadMessages.addAll(getMessages(messages, "reload"));
+            reloadMessages.addAll(getMessages(messages, "reload", messageColorizer));
         } else {
             logger.warning("\u001b[91mFailed to load messages from \"messages\" section. Please check your configuration file, or delete it and restart your server!\u001b[0m");
         }
     }
 
-    private static List<String> getMessages(final @NotNull ConfigurationSection section, final String path) {
+    private List<String> getMessages(final @NotNull ConfigurationSection section, final String path, final MessageColorizer messageColorizer) {
+
+        final List<String> messages = new ArrayList<>();
         if (section.get(path) instanceof String) {
-            return List.of(section.getString(path, "&4(!) &cFailed to get message on path: " + section + "." + path));
-        } else if (!section.getStringList(path).isEmpty()) {
-            return section.getStringList(path);
-        } else {
-            return List.of("&4(!) &cFailed to get message on path: " + section + "." + path);
+            final String message = section.getString(path, "&4(!) &cFailed to get message on path: " + section + "." + path);
+            messages.add(messageColorizer.colorize(message));
         }
+        else if (!section.getStringList(path).isEmpty()) {
+            section.getStringList(path).forEach(message ->
+                    messages.add(messageColorizer.colorize(message))
+            );
+        }
+        else {
+            return List.of(messageColorizer.colorize("&4(!) &cFailed to get message on path: " + section + "." + path));
+        }
+
+        return messages;
     }
 }

@@ -5,7 +5,7 @@ import graundbreaking.explosionshandler.listeners.Explosions;
 import graundbreaking.explosionshandler.listeners.UpdateNotifier;
 import graundbreaking.explosionshandler.utils.config.ConfigHandler;
 import graundbreaking.explosionshandler.utils.config.ConfigValues;
-import graundbreaking.explosionshandler.utils.MessageSender;
+import graundbreaking.explosionshandler.utils.MessageColorizer;
 import graundbreaking.explosionshandler.utils.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 public final class ExplosionsBlocker extends JavaPlugin {
 
-    private static FileConfiguration config = null;
+    private FileConfiguration config = null;
 
     @Override
     public void onEnable() {
@@ -24,31 +24,29 @@ public final class ExplosionsBlocker extends JavaPlugin {
 
         final Logger logger = getLogger();
         final ConfigHandler configHandler = new ConfigHandler(this, logger);
-        ExplosionsBlocker.config = configHandler.loadAndSetup();
+        this.config = configHandler.loadAndSetup();
         configHandler.checkVersion();
-        new ConfigValues(ExplosionsBlocker.config, logger).setValues();
-
-        final MessageSender messageSender = new MessageSender(extractMainVersion() >= 16);
+        new ConfigValues(this.config, logger).setValues(new MessageColorizer(extractMainVersion() >= 16));
 
         {
             getServer().getPluginManager().registerEvents(new EntitiesDamage(), this);
             getServer().getPluginManager().registerEvents(new Explosions(), this);
-            getServer().getPluginManager().registerEvents(new UpdateNotifier(messageSender), this);
+
+            UpdateNotifier.generateMessage(new MessageColorizer(extractMainVersion() >= 16));
+            getServer().getPluginManager().registerEvents(new UpdateNotifier(), this);
 
             getCommand("exhandler").setExecutor((sender, command, label, args) -> {
 
                 final long reloadStartTime = System.currentTimeMillis();
 
                 if (!sender.hasPermission("exblocker.reload")) {
-                    ConfigValues.getNoPermMessages().forEach(msg ->
-                            messageSender.sendMessage(sender, msg)
-                    );
+                    ConfigValues.getNoPermMessages().forEach(sender::sendMessage);
                     return true;
                 }
 
-                reloadConfig();
+                this.reloadConfig(new MessageColorizer(extractMainVersion() >= 16));
                 ConfigValues.getReloadMessages().forEach(msg ->
-                        messageSender.sendMessage(sender, msg.replace("%time%", String.valueOf(System.currentTimeMillis() - reloadStartTime)))
+                        sender.sendMessage(msg.replace("%time%", String.valueOf(System.currentTimeMillis() - reloadStartTime)))
                 );
 
                 return true;
@@ -76,10 +74,9 @@ public final class ExplosionsBlocker extends JavaPlugin {
         return config;
     }
 
-    @Override
-    public void reloadConfig() {
-        Logger logger = getLogger();
+    public void reloadConfig(final MessageColorizer messageColorizer) {
+        final Logger logger = getLogger();
         new ConfigHandler(this, logger).loadAndSetup();
-        new ConfigValues(config, logger).setValues();
+        new ConfigValues(config, logger).setValues(messageColorizer);
     }
 }
