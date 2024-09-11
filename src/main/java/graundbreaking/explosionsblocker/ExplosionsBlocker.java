@@ -35,7 +35,7 @@ public final class ExplosionsBlocker extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new Explosions(), this);
             getServer().getPluginManager().registerEvents(new UpdateNotifier(messageSender), this);
 
-            getCommand("exblocker").setExecutor((sender, command, label, args) -> {
+            getCommand("exhandler").setExecutor((sender, command, label, args) -> {
 
                 final long reloadStartTime = System.currentTimeMillis();
 

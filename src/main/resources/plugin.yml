@@ -5,13 +5,13 @@ author: graundbreaking
 description: Handle all types of explosions
 
 commands:
-  exblocker: {}
+  exhandler: {}
 
 permissions:
-  explosionsblocker.reload:
+  explosionshandler.reload:
     default: op
     description: Allows you to reload the plugin
 
-  explosionsblocker.updates:
+  explosionshandler.updates:
     default: op
     description: Allows you see updates notifications

@@ -1,10 +1,10 @@
 #
-# Command to reload the plugin - /exblocker
-# Permission to access reload - exblocker.reload
+# Command to reload the plugin - /exhandler
+# Permission to access reload - exhandler.reload
 #
 # Main prevents settings
 #
-# Set 'blocked-worlds: []' to disable in all worlds
+# Set 'blocked-worlds: []' to disable explosion type in all worlds
 settings:
   # Do not change it!
   config-version: 1.0
