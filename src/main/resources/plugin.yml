@@ -3,6 +3,7 @@ version: '${project.version}'
 main: graundbreaking.explosionshandler.ExplosionsBlocker
 author: graundbreaking
 description: Handle all types of explosions
+website: https://github.com/groundbreakingmc
 
 commands:
   exhandler: {}
